@@ -1,0 +1,12 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+      "outDir": "dist",
+      "rootDir": "./",
+      "baseUrl": ".",
+      "types": ["express", "node", "Multer"],
+      "typeRoots": ["./node_modules/@types"],
+    },
+    "include": ["src"],
+  }
+  
