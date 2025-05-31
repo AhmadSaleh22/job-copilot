@@ -21,7 +21,6 @@ model JobPreferences {
   userId String @unique
   user   User   @relation(fields: [userId], references: [id])
 
-  workLocation     String
   jobTypes         String[]
   jobTitles        String[]
   seniority        String?
@@ -29,6 +28,7 @@ model JobPreferences {
   includeKeywords  String[]
   excludeKeywords  String[]
   excludeCompanies String[]
+  workLocation String[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

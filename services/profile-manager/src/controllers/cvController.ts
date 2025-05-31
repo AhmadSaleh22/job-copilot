@@ -43,7 +43,7 @@ export async function handleCvUpload(req: AuthenticatedRequest, res: Response): 
   preferences: {
     jobTitles: string[],
     jobTypes: string[],
-    workLocation: string,
+    workLocation: string[],
     includeKeywords: string[],
     excludeKeywords: string[],
     excludeCompanies: string[]
