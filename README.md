@@ -103,6 +103,11 @@ OPENAI_API_KEY=your-openrouter-key
 DATABASE_URL=postgres://...
 GCP_PROJECT_ID=your-project
 GOOGLE_APPLICATION_CREDENTIALS=path-to-service-account.json
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USER=your-smtp-user
+SMTP_PASS=your-smtp-pass
+FROM_EMAIL=noreply@example.com
 ```
 
 ### 3. Migrate DB
@@ -126,6 +131,7 @@ pnpm dev
 | `cv-uploaded`  | `{ userId, cvText, timestamp }`     | `cv-parser`  |
 | `jobs-fetched` | `{ jobList: Job[], source }`        | `job-fetcher` |
 | `profile-updated` | `{ userId, preferences }`        | `profile-manager` |
+| `job-matched` | `{ userId, email, jobs }`         | `job-matcher` |
 
 ---
 
