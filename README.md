@@ -16,6 +16,7 @@ This system is designed around the following microservices:
 | **profile-manager** | Stores and manages user job preferences                                |
 | **job-fetcher**    | Scrapes or fetches jobs from external sources and scores them           |
 | **job-matcher**    | Matches jobs to users using a smart algorithm                           |
+| **job-notifier**    | Sends daily email summaries with cover letters |
 
 All services communicate via **Google Cloud Pub/Sub**, enabling full decoupling, scalability, and asynchronous processing.
 
@@ -63,6 +64,7 @@ services/
   profile-manager/       # Job preference storage and management
   job-fetcher/           # Job ingestion/scraping logic
   job-matcher/           # (Planned) Matching engine based on preferences
+  job-notifier/        # Sends daily job emails with cover letters
 
 pubsub/
   publisher.ts           # Event publisher utility (e.g. publishCvUploaded)
@@ -101,6 +103,11 @@ OPENAI_API_KEY=your-openrouter-key
 DATABASE_URL=postgres://...
 GCP_PROJECT_ID=your-project
 GOOGLE_APPLICATION_CREDENTIALS=path-to-service-account.json
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USER=your-smtp-user
+SMTP_PASS=your-smtp-pass
+FROM_EMAIL=noreply@example.com
 ```
 
 ### 3. Migrate DB
@@ -114,6 +121,7 @@ pnpm prisma migrate dev --name init
 ```bash
 pnpm dev
 ```
+This will start **profile-manager**, **job-fetcher**, and **job-notifier** for local development.
 
 ---
 
@@ -124,6 +132,7 @@ pnpm dev
 | `cv-uploaded`  | `{ userId, cvText, timestamp }`     | `cv-parser`  |
 | `jobs-fetched` | `{ jobList: Job[], source }`        | `job-fetcher` |
 | `profile-updated` | `{ userId, preferences }`        | `profile-manager` |
+| `job-matched` | `{ userId, email, jobs }`         | `job-matcher` |
 
 ---
 

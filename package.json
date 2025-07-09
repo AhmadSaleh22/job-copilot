@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently --names \"profile,fetcher\" -c \"green,cyan\" \"pnpm --filter profile-manager dev\" \"pnpm --filter job-fetcher dev\""
+    "dev": "concurrently --names \"profile,fetcher,notifier\" -c \"green,cyan,magenta\" \"pnpm --filter profile-manager dev\" \"pnpm --filter job-fetcher dev\" \"pnpm --filter job-notifier dev\""
   },
   "devDependencies": {
     "@prisma/client": "^6.8.2",
