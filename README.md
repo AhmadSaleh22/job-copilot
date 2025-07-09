@@ -16,6 +16,7 @@ This system is designed around the following microservices:
 | **profile-manager** | Stores and manages user job preferences                                |
 | **job-fetcher**    | Scrapes or fetches jobs from external sources and scores them           |
 | **job-matcher**    | Matches jobs to users using a smart algorithm                           |
+| **job-notifier**    | Sends daily email summaries with cover letters |
 
 All services communicate via **Google Cloud Pub/Sub**, enabling full decoupling, scalability, and asynchronous processing.
 
@@ -63,6 +64,7 @@ services/
   profile-manager/       # Job preference storage and management
   job-fetcher/           # Job ingestion/scraping logic
   job-matcher/           # (Planned) Matching engine based on preferences
+  job-notifier/        # Sends daily job emails with cover letters
 
 pubsub/
   publisher.ts           # Event publisher utility (e.g. publishCvUploaded)
